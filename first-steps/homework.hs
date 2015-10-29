@@ -1,4 +1,5 @@
-N = a `div` length xs
-    where
-    a = 10
-    xs = [1, 2, 3, 4, 5]
+factorial n = product [1..n]
+
+avarage ns = sum ns `div` length ns
+
+crazyFunction word = head [length word]
