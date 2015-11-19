@@ -1,3 +1,6 @@
+import Prelude hiding ((||))
+import Prelude hiding ((&&))
+
 myHalve1 xs = (take n xs, drop (n + 1) xs)
   where n = length xs `div` 2
 
@@ -5,6 +8,8 @@ myHalve2 xs = splitAt (div (length xs) 2) xs
 
 myHalve3 xs = (take n xs, drop n xs) 
   where n = length xs `div` 2
+
+-- Createing a tail but safe when an array is empty
 
 safeTail xs = if null xs then [] else tail xs
 
@@ -34,21 +39,34 @@ safeTail8
     	[ ] -> [ ]
     	(_ : xs) -> xs
 
---import Prelude hiding ((||))
 
---False || False = False
---_ || _ = True
+-- Define another implementations of OR
 
---False || False = False
---_ || _ = True
+False || False = False
+_ || _ = True
+
+False || False = False
+_ || _ = True
 
 
---import Prelude hiding ((&&))
+-- Define another implementations of AND
 
---True && True = True
---_ && _ = False
+True && True = True
+_ && _ = False
 
 a && b = if a then if b then True else False else False
+
+a && b = if not (a) then not (b) else True
+
+a && b = if a then b else False
+
+a && b = if b then a else False
+
+-- Defines multiplication 
+
+mult x y z = x * y * z
+
+-- Defines a function that takes a number n and a list and removes an element in that position
 
 remove n xs = take n xs ++ drop (n + 1) xs
 
