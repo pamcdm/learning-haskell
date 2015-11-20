@@ -1,18 +1,7 @@
+--import Prelude hiding ((!!))
+import Prelude hiding (elem)
+
 -- produce a list with n identical elements
-
---replicateList :: Int -> a -> [a]
---replicateList 0 = []
---replicateList x = x : replicateList (x - 1)
-
----- select the nth element of a list
---selectNElement :: [a] -> Int -> a
---selectNElement [x] = x
---selectNElement xs = tail (selectNElement -1)
-
--- HomeWork exercises
-
--- Exercise 4
--- Valid implemantions of and funciton
 
 and1 :: [Bool] -> Bool
 and1 [] = True
@@ -35,7 +24,7 @@ and5 [] = True
 and5 (b : bs) = and5 bs && b
 
 -- Exercise 5
--- Valid implementations of concat function 
+-- Valid implementations of concat function
 
 concat2 :: [[a]] -> [a]
 concat2 [] = []
@@ -53,13 +42,13 @@ hasElem x (y : ys)
   | x == y = True
   | otherwise = hasElem x ys
 
--- Exercise 9 
+-- Exercise 9
 
 merge :: Ord a => [a] -> [a] -> [a]
 merge [] ys = ys
 merge xs [] = xs
 merge (x : xs) (y : ys)
-  = if x <= y then x : merge xs (y : ys) else y : merge (x : xs) ys	
+  = if x <= y then x : merge xs (y : ys) else y : merge (x : xs) ys
 
 -- Exercise 10
 
@@ -72,12 +61,18 @@ msort [x] = [x]
 msort xs = merge (msort ys) (msort zs)
   where (ys, zs) = halve xs
 
+replicateList :: Int -> a -> [a]
+replicateList 0 _ = []
+replicateList x n = n : replicateList (x - 1) n
 
+-- select the nth element of a list
+--(!!) :: [a] -> Int -> a
+--(!!) (x:xs) 0 = x
+--(!!) (x:xs) p = (!!) xs (p-1)
 
-
-
-
-
-
-
+elem :: Eq a => a -> [a] -> Bool
+elem _ [] = False
+elem x (y:ys)
+  | x == y    = True
+  | otherwise = elem x ys
 
