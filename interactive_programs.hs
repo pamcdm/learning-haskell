@@ -45,3 +45,30 @@ guess word =
       else
         do putStrLn (diff word xs)
            guess word
+
+--Exercise 1
+putStr' :: String -> IO ()
+putStr' [] = return ()
+putStr'  (x:xs) = putChar x >> putStr' xs
+
+--Exercise 2
+putStrLn' :: String -> IO()
+putStrLn' [] = putChar '\n'
+putStrLn' xs = putStr xs >> putStrLn' ""
+
+putStrLn'' :: String -> IO()
+putStrLn'' [] = putChar '\n'
+putStrLn'' xs = putStr xs >> putChar '\n'
+
+putStrLn''' :: String -> IO()
+putStrLn''' [] = putChar '\n'
+putStrLn''' xs = putStr xs >>= \ x -> putChar '\n'
+
+putStrLn'''' :: String -> IO()
+putStrLn'''' [] = putChar '\n'
+putStrLn'''' xs = putStr xs >> putStrLn "\n"
+
+
+--Exercise 5
+sequence_ [] = return ()
+sequence_ (m:ms) = (foldl (>>) m ms) >> return ()
